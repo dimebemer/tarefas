@@ -27,13 +27,30 @@
 <div class="container">
 
     <form class="form-signin" action="efetuaLogin" method="post" role="form">
-        <h2 class="form-signin-heading">Autentique-se</h2>
-        <label for="login" class="sr-only">Nome de usuário</label>
-        <input type="text" name="login" id="login" class="form-control" placeholder="Usuário" required autofocus>
+        <h2 class="form-signin-heading text-center">Autentique-se</h2>
 
-        <label for="senha" class="sr-only">Senha</label>
-        <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
+        <div class="input-group">
+	        <span class="input-group-addon" id="imagem-conta">
+	            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	        </span>
+	        <input type="text" name="login" class="form-control"
+	        placeholder="Usuário" aria-describedby="imagem-conta" required autofocus>
+        </div>
 
+        <div class="input-group">
+            <span class="input-group-addon" id="imagem-senha">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+            </span>
+            <input type="password" name="senha" class="form-control"
+            placeholder="Senha" aria-describedby="imagem-senha" required>
+        </div>
+
+        <div class="text-center">
+            <h5>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <a href="novoUsuario"> Criar nova conta</a>
+            </h5>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
 

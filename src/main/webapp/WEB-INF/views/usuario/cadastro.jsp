@@ -28,16 +28,31 @@
 <div class="container">
 
     <form class="form-signin" action="cadastraUsuario" method="post" role="form">
-        <h2 class="form-signin-heading">Cadastro</h2>
-        <label for="login" class="sr-only">Nome de usuário</label>
-        <input type="text" name="login" id="login" class="form-control" placeholder="Usuário" required autofocus>
+        <h2 class="form-signin-heading text-center">Cadastro</h2>
 
-        <label for="senha" class="sr-only">Senha</label>
-        <input type="password" name="senha" id="senha" class="form-control" />
+        <div class="input-group">
+            <span class="input-group-addon" id="imagem-conta">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </span>
+            <input type="text" name="login" class="form-control"
+            placeholder="Usuário" aria-describedby="imagem-conta" required autofocus>
+        </div>
 
-        <label for="confirmarSenha" class="sr-only">Confirme sua senha</label>
-        <input type="password" name="confirmarSenha" id="confirmarSenha" class="form-control" />
+        <div class="input-group">
+            <span class="input-group-addon" id="imagem-senha">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+            </span>
+            <input type="password" name="senha" class="form-control"
+            placeholder="Senha" aria-describedby="imagem-senha" required>
+        </div>
 
+        <div class="input-group">
+            <span class="input-group-addon" id="imagem-confirma-senha">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </span>
+            <input type="password" name="confirmarSenha" class="form-control"
+            placeholder="Confirme sua senha" aria-describedby="imagem-confirma-senha" required>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Criar cadastro</button>
     </form>
 

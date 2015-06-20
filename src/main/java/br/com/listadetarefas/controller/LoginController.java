@@ -4,7 +4,6 @@ import br.com.listadetarefas.dao.usuario.impl.UsuarioDaoImpl;
 import br.com.listadetarefas.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,13 +38,15 @@ public class LoginController {
 
     @RequestMapping("cadastraUsuario")
     public String cadastra(@Valid Usuario usuario, BindingResult result,
-                           @ModelAttribute("confirmarSenha") String confirmarSenha) {
+                           @ModelAttribute("confirmarSenha") String confirmarSenha,
+                           HttpSession session) {
         if (result.hasFieldErrors() ||
             dao.pesquisaPorLogin(usuario.getLogin()) != null ||
             !usuario.getSenha().equals(confirmarSenha)) {
             return "redirect:novoUsuario";
         }
         dao.cadastra(usuario);
+        session.setAttribute("usuarioLogado", usuario);
         return "usuario/cadastrado";
     }
 }

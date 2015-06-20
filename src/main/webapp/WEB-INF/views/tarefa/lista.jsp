@@ -17,34 +17,8 @@
 	src="<c:url value="/resources/js/jquery-1.11.3.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<script type="text/javascript">
-	function sucesso(mensagem){
-		$('#alert-sucesso-msg').html(mensagem);
-		$('#alert-sucesso').alert();
-		$('#alert-sucesso').fadeTo(4000, 500).slideUp(500, function(){
-			$("#alert-sucesso").alert('close');
-		});
-	}
-	function finalizaAgora(id){
-		$.post("finalizaTarefa", {'id' : id}, function(resposta){
-			$("#tarefa_"+id).html(resposta);
-			sucesso('A tarefa foi finalizada!');
-		});
-	}
-	function removeTarefa(id){
-		$('#removerModal').modal('show');
-		$('#confirma-remocao').click(function() {
-			$.post("removeTarefa", {'id' : id}, function(){
-				$("#tarefa_"+id).hide();
-			});
-			$('#removerModal').modal('hide');
-			sucesso('Tarefa removida com sucesso!');
-	    });
-		$('#recusa-remocao').click(function() {
-			$('#removerModal').modal('hide');
-	    });
-	}
-</script>
+<script type="text/javascript"
+    src="<c:url value="/resources/js/script.js" />"></script>
 <title>Gerenciador de Tarefas</title>
 </head>
 <body>
@@ -56,11 +30,16 @@
 		<div class="container-fluid">
 			<h2 class="sub-header">Lista de Tarefas</h2>
 
+            <div id="alertas">
+            </div>
+
+            <!--
 			<div class="alert alert-success" id="alert-sucesso" style="display: none;">
 			    <button type="button" class="close" data-dismiss="alert">x</button>
 			    <strong>Pronto! </strong>
 			    <span id="alert-sucesso-msg"></span>
 			</div>
+			 -->
 
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -70,9 +49,12 @@
 							<th>Descrição</th>
 							<th>Concluída?</th>
 							<th>Data de Finalização</th>
-							<th></th>
-							<th></th>
-							<th></th>
+
+							<c:if test="${not empty usuarioLogado}">
+								<th></th>
+								<th></th>
+								<th></th>
+							</c:if>
 						</tr>
 					</thead>
 
@@ -94,23 +76,35 @@
 											pattern="dd/MM/yyyy" />
 									</c:if>
 								</td>
-								<td>
-									<c:if test="${not tarefa.finalizado}">
-										<a href="#" onclick="finalizaAgora(${tarefa.id})">
-											Finalizar agora</a>
-									</c:if>
-								</td>
-								<td><a href="#" onclick="removeTarefa(${tarefa.id})">Remover</a></td>
-								<td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
+
+								<c:if test="${not empty usuarioLogado}">
+									<td>
+										<c:if test="${not tarefa.finalizado}">
+											<a href="#" onclick="finalizaAgora(${tarefa.id})">
+												Finalizar agora</a>
+										</c:if>
+									</td>
+									<td><a href="#" onclick="removeTarefa(${tarefa.id})">Remover</a></td>
+									<td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
+								</c:if>
+
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 
-			<div class="text-center">
-				<a href="novaTarefa" class="btn btn-primary btn-lg" role="button">Adicionar tarefa</a>
-			</div>
+			<c:if test="${not empty usuarioLogado}">
+				<div class="text-center">
+					<a href="novaTarefa" class="btn btn-primary btn-lg" role="button">Adicionar tarefa</a>
+				</div>
+			</c:if>
+
+			<c:if test="${empty usuarioLogado}">
+				<div class="text-center">
+					<a href="loginUsuario" class="btn btn-primary btn-lg" role="button">Autentique-se</a>
+				</div>
+			</c:if>
 		</div>
 
 		<div id="finalizadoModal" class="modal fade" role="dialog">
