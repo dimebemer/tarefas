@@ -16,12 +16,9 @@ import br.com.listadetarefas.dao.tarefa.impl.TarefaDaoImpl;
 
 @Controller
 public class TarefasController {
-    private final TarefaDaoImpl dao;
 
     @Autowired
-    public TarefasController(TarefaDaoImpl dao) {
-        this.dao = dao;
-    }
+    private TarefaDaoImpl dao;
 
     @RequestMapping("adicionaTarefa")
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
