@@ -3,3 +3,6 @@
 /.project
 /bin/
 /.settings/
+
+.idea
+ListaDeTarefas.iml
