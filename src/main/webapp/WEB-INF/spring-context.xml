@@ -14,14 +14,20 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler />
 
-	<bean
+    <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<bean id="messageSource"
+    <bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/mensagens" />
 	</bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/gerenciadordetarefas" />
+        <property name="username" value="root" />
+        <property name="password" value="abc123" />
+    </bean>
 
 </beans>

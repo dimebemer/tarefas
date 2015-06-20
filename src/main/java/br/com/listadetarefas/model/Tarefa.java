@@ -1,4 +1,4 @@
-package br.com.listadetarefas.beans;
+package br.com.listadetarefas.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
