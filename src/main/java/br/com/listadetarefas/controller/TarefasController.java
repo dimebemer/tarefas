@@ -11,14 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.listadetarefas.dao.tarefa.TarefaDao;
 import br.com.listadetarefas.model.Tarefa;
-import br.com.listadetarefas.dao.tarefa.impl.TarefaDaoImpl;
 
 @Controller
 public class TarefasController {
 
     @Autowired
-    private TarefaDaoImpl dao;
+    private TarefaDao dao;
 
     @RequestMapping("adicionaTarefa")
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {

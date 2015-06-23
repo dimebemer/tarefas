@@ -127,7 +127,7 @@ public class TarefaDaoImpl implements TarefaDao {
                 "WHERE descricao " +
                 "LIKE ?";
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-        return jdbc.query(sql, new Object[]{descricao}, new TarefaMapper());
+        return jdbc.query(sql, new Object[]{"%"+descricao+"%"}, new TarefaMapper());
 	}
 
 }

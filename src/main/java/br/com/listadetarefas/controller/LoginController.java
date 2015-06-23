@@ -1,21 +1,22 @@
 package br.com.listadetarefas.controller;
 
-import br.com.listadetarefas.dao.usuario.impl.UsuarioDaoImpl;
-import br.com.listadetarefas.model.Usuario;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import br.com.listadetarefas.dao.usuario.UsuarioDao;
+import br.com.listadetarefas.model.Usuario;
 
 @Controller
 public class LoginController {
 
     @Autowired
-    private UsuarioDaoImpl dao;
+    private UsuarioDao dao;
 
     @RequestMapping("novoUsuario")
     public String formCadastro() {
