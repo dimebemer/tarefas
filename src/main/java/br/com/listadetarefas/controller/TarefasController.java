@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.listadetarefas.dao.tarefa.TarefaDao;
@@ -44,7 +45,7 @@ public class TarefasController {
 	}
 
 	@ResponseBody
-	@RequestMapping("removeTarefa")
+	@RequestMapping(value = "removeTarefa", method = RequestMethod.POST)
 	public void remove(Long id){
 		dao.remove(id);
 	}
