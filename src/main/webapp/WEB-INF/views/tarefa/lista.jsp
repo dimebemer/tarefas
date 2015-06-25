@@ -1,30 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/imports.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel='stylesheet'
-	href='<c:url value="/resources/css/bootstrap.min.css" />' />
-<link rel='stylesheet'
-	href='<c:url value="/resources/css/bootstrap-theme.min.css" />'>
-<link rel='stylesheet'
-	href='<c:url value="/resources/css/dashboard.css" />' />
-<script type="text/javascript"
-	src="<c:url value="/resources/js/jquery-1.11.3.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<script type="text/javascript"
-    src="<c:url value="/resources/js/script.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/script.js" />"></script>
 <title>Gerenciador de Tarefas</title>
 </head>
 <body>
 	<c:import url="../menuNav.jsp" />
 
-	<div class="col-sm-10 col-sm-offset-1">
+	<div class="col-md-10 col-md-offset-1">
 		<h1 class="page-header">Bem-vindo!</h1>
 
 		<div class="container-fluid">
@@ -84,7 +71,7 @@
 												Finalizar agora</a>
 										</c:if>
 									</td>
-									<td><a href="#" onclick="removeTarefa(${tarefa.id})">Remover</a></td>
+									<td><a href="#" onclick="confirmaRemocao(${tarefa.id})">Remover</a></td>
 									<td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
 								</c:if>
 
@@ -107,28 +94,15 @@
 			</c:if>
 		</div>
 
-		<div id="finalizadoModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-body">
-						<p>Tarefa finalizada com sucesso!</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="removerModal" class="modal fade" role="dialog">
+		<div id="removerModal" class="modal" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-body">
 						<p>Deseja remover esta tarefa?</p>
 					</div>
 					<div class="modal-footer">
-						<button id="confirma-remocao" type="button" class="btn btn-default">Sim</button>
-						<button id="recusa-remocao" type="button" class="btn btn-default">Não</button>
+						<button id="confirma-remocao" type="button" class="btn btn-default modal-confirma">Sim</button>
+						<button id="recusa-remocao" type="button" class="btn btn-default" onclick="$('#removerModal').modal('hide');">Não</button>
 					</div>
 				</div>
 			</div>

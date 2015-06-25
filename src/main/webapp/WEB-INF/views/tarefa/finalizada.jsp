@@ -5,5 +5,5 @@
 <td><fmt:formatDate value="${tarefa.dataFinalizacao.time}" pattern="dd/MM/yyyy" />
 </td>
 <td>Finalizada!</td>
-<td><a href="removeTarefa?id=${tarefa.id}">Remover</a></td>
+<td><a href="#" onclick="confirmaRemocao(${tarefa.id})">Remover</a></td>
 <td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
