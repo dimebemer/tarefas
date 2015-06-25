@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../menuNav.jsp" />
 
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-sm-10 col-sm-offset-1">
 		<h1 class="page-header">Bem-vindo!</h1>
 
 		<div class="container-fluid">
