@@ -14,7 +14,7 @@
 		<h1 class="page-header">Adicionar tarefa</h1>
 
 		<div class="container-fluid">
-			<form method="post" action="adicionaTarefa" role="form">
+			<form method="post" action="adiciona" role="form">
 				<div class="form-group">
 					<div>Descrição:</div>
 					<div>

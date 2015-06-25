@@ -5,4 +5,5 @@
 /.settings/
 
 .idea
-ListaDeTarefas.iml
+classes
+tasktor.iml

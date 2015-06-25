@@ -16,12 +16,34 @@ import br.com.listadetarefas.dao.tarefa.TarefaDao;
 import br.com.listadetarefas.model.Tarefa;
 
 @Controller
+@RequestMapping("tarefas")
 public class TarefasController {
 
     @Autowired
     private TarefaDao dao;
 
-    @RequestMapping("adicionaTarefa")
+    @RequestMapping("listar")
+    public String lista(Model model) {
+        List<Tarefa> tarefas = dao.getLista();
+        model.addAttribute("tarefas", tarefas);
+
+        return "tarefa/lista";
+    }
+
+    @RequestMapping("buscar")
+    public String busca(Tarefa tarefa, Model model){
+        List<Tarefa> tarefas = dao.getListaPorNome(tarefa.getDescricao());
+        model.addAttribute("tarefas", tarefas);
+
+        return "tarefa/lista";
+    }
+
+    @RequestMapping("adicionar")
+    public String formularioNovaTarefa() {
+        return "tarefa/formulario";
+    }
+
+    @RequestMapping(value = "adiciona", method = RequestMethod.POST)
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
 		if (result.hasErrors()) {
 			return "tarefa/formulario";
@@ -31,50 +53,29 @@ public class TarefasController {
 		return "tarefa/adicionada";
 	}
 
-	@RequestMapping("novaTarefa")
-	public String formularioNovaTarefa() {
-		return "tarefa/formulario";
-	}
+    @RequestMapping("editar")
+    public String formularioEditar(Tarefa tarefa, Model model) {
+        Tarefa tarefaCompleta = dao.pesquisa(tarefa.getId());
+        model.addAttribute("tarefa", tarefaCompleta);
+        return "tarefa/editar";
+    }
 
-	@RequestMapping("listaTarefa")
-	public String lista(Model model) {
-		List<Tarefa> tarefas = dao.getLista();
-		model.addAttribute("tarefas", tarefas);
+    @RequestMapping(value = "edita", method = RequestMethod.POST)
+    public String edita(Tarefa tarefa){
+        dao.altera(tarefa);
+        return "redirect:listar";
+    }
 
-		return "tarefa/lista";
-	}
+    @RequestMapping(value = "finaliza", method = RequestMethod.POST)
+    public String finaliza(Long id, Model model){
+        dao.finaliza(id);
+        model.addAttribute("tarefa", dao.pesquisa(id));
+        return "tarefa/finalizada";
+    }
 
 	@ResponseBody
-	@RequestMapping(value = "removeTarefa", method = RequestMethod.POST)
+	@RequestMapping(value = "remove", method = RequestMethod.POST)
 	public void remove(Long id){
 		dao.remove(id);
-	}
-
-	@RequestMapping("editaTarefa")
-	public String formularioEditar(Tarefa tarefa, Model model) {
-		Tarefa tarefaCompleta = dao.pesquisa(tarefa.getId());
-		model.addAttribute("tarefa", tarefaCompleta);
-		return "tarefa/editar";
-	}
-
-	@RequestMapping("alteraTarefa")
-	public String altera(Tarefa tarefa){
-		dao.altera(tarefa);
-		return "redirect:listaTarefa";
-	}
-
-	@RequestMapping("finalizaTarefa")
-	public String finaliza(Long id, Model model){
-		dao.finaliza(id);
-		model.addAttribute("tarefa", dao.pesquisa(id));
-		return "tarefa/finalizada";
-	}
-
-	@RequestMapping("procuraTarefa")
-	public String procura(Tarefa tarefa, Model model){
-		List<Tarefa> tarefas = dao.getListaPorNome(tarefa.getDescricao());
-		model.addAttribute("tarefas", tarefas);
-
-		return "tarefa/lista";
 	}
 }

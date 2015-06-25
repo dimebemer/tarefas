@@ -15,7 +15,7 @@
 
 <div class="container">
 
-    <form class="form-signin" action="cadastraUsuario" method="post" role="form">
+    <form class="form-signin" action="cadastra" method="post" role="form">
         <h2 class="form-signin-heading text-center">Cadastro</h2>
 
         <div class="input-group">

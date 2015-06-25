@@ -16,7 +16,7 @@ function sucesso(mensagem) {
 	});
 }
 function finalizaAgora(id) {
-	$.post("finalizaTarefa", {'id' : id}, function(resposta) {
+	$.post($ROOT + "/tarefas/finaliza", {'id' : id}, function(resposta) {
 		$("#tarefa_" + id).html(resposta);
 	});
     sucesso('A tarefa foi finalizada!');
@@ -28,7 +28,7 @@ function confirmaRemocao(id) {
 
 function removeTarefa(id) {
     $.ajax({
-        url: 'removeTarefa',
+        url: $ROOT + '/tarefas/remove',
         method: 'POST',
         data: {'id' : id},
         success: function() {
@@ -37,10 +37,3 @@ function removeTarefa(id) {
             sucesso('Tarefa removida com sucesso!');
     }});
 }
-
-/*$('#confirma-remocao').click(function() {
-});*/
-
-/*$('#recusa-remocao').click(function() {
-
-});*/

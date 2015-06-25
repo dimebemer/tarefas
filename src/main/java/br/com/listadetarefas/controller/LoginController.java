@@ -11,43 +11,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.listadetarefas.dao.usuario.UsuarioDao;
 import br.com.listadetarefas.model.Usuario;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("usuario")
 public class LoginController {
 
     @Autowired
     private UsuarioDao dao;
 
-    @RequestMapping("novoUsuario")
+    @RequestMapping("cadastro")
     public String formCadastro() {
         return "usuario/cadastro";
     }
 
-    @RequestMapping("loginUsuario")
+    @RequestMapping("login")
     public String formLogin() {
         return "usuario/login";
     }
 
-    @RequestMapping("efetuaLogin")
+    @RequestMapping(value = "loga", method = RequestMethod.POST)
     public String login(Usuario usuario, HttpSession session) {
         if (dao.valida(usuario)) {
-            session.setAttribute("usuarioLogado", usuario);
-            return "redirect:listaTarefa";
+            session.setAttribute("USUARIO_LOGADO", usuario);
+            return "redirect:../tarefas/listar";
         }
-        return "redirect:loginUsuario";
+        return "redirect:login";
     }
 
-    @RequestMapping("cadastraUsuario")
+    @RequestMapping(value = "cadastra", method = RequestMethod.POST)
     public String cadastra(@Valid Usuario usuario, BindingResult result,
                            @ModelAttribute("confirmarSenha") String confirmarSenha,
                            HttpSession session) {
         if (result.hasFieldErrors() ||
             dao.pesquisaPorLogin(usuario.getLogin()) != null ||
             !usuario.getSenha().equals(confirmarSenha)) {
-            return "redirect:novoUsuario";
+            return "redirect:cadastro";
         }
         dao.cadastra(usuario);
-        session.setAttribute("usuarioLogado", usuario);
+        session.setAttribute("USUARIO_LOGADO", usuario);
         return "usuario/cadastrado";
     }
 }

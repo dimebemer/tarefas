@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <form class="form-signin" action="efetuaLogin" method="post" role="form">
+    <form class="form-signin" action="loga" method="post" role="form">
         <h2 class="form-signin-heading text-center">Autentique-se</h2>
 
         <div class="input-group">
@@ -36,7 +36,7 @@
         <div class="text-center">
             <h5>
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <a href="novoUsuario"> Criar nova conta</a>
+            <a href="cadastro"> Criar nova conta</a>
             </h5>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>

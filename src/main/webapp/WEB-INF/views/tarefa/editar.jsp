@@ -15,7 +15,7 @@
 		<h1 class="page-header">Editar tarefa</h1>
 
 		<div class="container-fluid">
-			<form action="alteraTarefa" method="post" role="form">
+			<form action="edita" method="post" role="form">
 				<input class="form-control" name="id" type="hidden"
 					value="${tarefa.id}" />
 

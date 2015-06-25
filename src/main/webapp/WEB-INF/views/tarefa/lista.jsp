@@ -21,15 +21,7 @@
             <div id="alertas">
             </div>
 
-            <!--
-			<div class="alert alert-success" id="alert-sucesso" style="display: none;">
-			    <button type="button" class="close" data-dismiss="alert">x</button>
-			    <strong>Pronto! </strong>
-			    <span id="alert-sucesso-msg"></span>
-			</div>
-			 -->
-
-			<div class="table-responsive">
+            <div class="table-responsive">
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -38,7 +30,7 @@
 							<th>Concluída?</th>
 							<th>Data de Finalização</th>
 
-							<c:if test="${not empty usuarioLogado}">
+							<c:if test="${not empty USUARIO_LOGADO}">
 								<th></th>
 								<th></th>
 								<th></th>
@@ -65,7 +57,7 @@
 									</c:if>
 								</td>
 
-								<c:if test="${not empty usuarioLogado}">
+								<c:if test="${not empty USUARIO_LOGADO}">
 									<td>
 										<c:if test="${not tarefa.finalizado}">
 											<a href="#" onclick="finalizaAgora(${tarefa.id})">
@@ -73,7 +65,7 @@
 										</c:if>
 									</td>
 									<td><a href="#" onclick="confirmaRemocao(${tarefa.id})">Remover</a></td>
-									<td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
+									<td><a href="editar?id=${tarefa.id}">Alterar</a></td>
 								</c:if>
 
 							</tr>
@@ -82,15 +74,15 @@
 				</table>
 			</div>
 
-			<c:if test="${not empty usuarioLogado}">
+			<c:if test="${not empty USUARIO_LOGADO}">
 				<div class="text-center">
-					<a href="novaTarefa" class="btn btn-primary btn-lg" role="button">Adicionar tarefa</a>
+					<a href="adicionar" class="btn btn-primary btn-lg" role="button">Adicionar tarefa</a>
 				</div>
 			</c:if>
 
-			<c:if test="${empty usuarioLogado}">
+			<c:if test="${empty USUARIO_LOGADO}">
 				<div class="text-center">
-					<a href="loginUsuario" class="btn btn-primary btn-lg" role="button">Autentique-se</a>
+					<a href="${root}/usuario/login" class="btn btn-primary btn-lg" role="button">Autentique-se</a>
 				</div>
 			</c:if>
 		</div>
@@ -103,7 +95,8 @@
 					</div>
 					<div class="modal-footer">
 						<button id="confirma-remocao" type="button" class="btn btn-default modal-confirma">Sim</button>
-						<button id="recusa-remocao" type="button" class="btn btn-default" onclick="$('#removerModal').modal('hide');">Não</button>
+						<button id="recusa-remocao" type="button" class="btn btn-default"
+                                onclick="$('#removerModal').modal('hide');">Não</button>
 					</div>
 				</div>
 			</div>

@@ -6,4 +6,4 @@
 </td>
 <td>Finalizada!</td>
 <td><a href="#" onclick="confirmaRemocao(${tarefa.id})">Remover</a></td>
-<td><a href="editaTarefa?id=${tarefa.id}">Alterar</a></td>
+<td><a href="editar?id=${tarefa.id}">Alterar</a></td>

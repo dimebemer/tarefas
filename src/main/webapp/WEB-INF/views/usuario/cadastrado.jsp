@@ -14,7 +14,7 @@
 	<div class="col-sm-12 text-center">
 		<div class="container-fluid">
 			<h3 class="sub-header text-success">Usuário cadastrado com sucesso!</h3>
-			<a href="listaTarefa" class="btn btn-primary" role="button">Abrir tarefas</a>
+			<a href="${root}/tarefas/listar" class="btn btn-primary" role="button">Abrir tarefas</a>
 		</div>
 	</div>
 </body>
